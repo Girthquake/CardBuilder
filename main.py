@@ -1085,9 +1085,9 @@ if __name__ == 'main':
         with open('crash.bak', 'wb') as fp:
 
             pickle.dump(crashsave, fp)
-        with open('bak/equip/'+equipnumber+'.bak', 'wb') as fp:
-            if not os.path.exists('bak/equip/'):
+        if not os.path.exists('bak/equip/'):
                 os.makedirs('bak/equip/')
+        with open('bak/equip/'+equipnumber+'.bak', 'wb') as fp:
             pickle.dump(crashsave, fp)
 
     #card demo table
