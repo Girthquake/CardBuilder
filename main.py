@@ -66,6 +66,7 @@ equipnumber="000-000000"
 hz=0
 hz1=0
 updateloader=False
+updateimageinjest=False
 #Classes
 class eStops:
     def __init__(self):
@@ -369,7 +370,12 @@ if __name__ == 'main':
         with open('CardBuilderNew.exe', 'wb') as f:
             f.write(version_check.content)
             f.close
-        
+    if updateimageinjest:
+        print("updating Loader Please wait")
+        version_check = requests.get(versionurl, verify=False)
+        with open('ImageInjest.exe', 'wb') as f:
+            f.write(version_check.content)
+            f.close
     isgood = False
     console = Console()
     try:
