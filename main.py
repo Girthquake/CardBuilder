@@ -351,7 +351,7 @@ if __name__ == 'main':
         print("updating Loader")
         
     isgood = False
-    console = Console()
+    console = Console(width=266)
     try:
         el1 = Elockouts()
         el2 = Elockouts()
