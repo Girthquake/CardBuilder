@@ -66,7 +66,7 @@ equipnumber="000-000000"
 hz=0
 hz1=0
 updateloader=False
-updateimageinjest=False
+updateimageinjest=True
 #Classes
 class eStops:
     def __init__(self):
@@ -371,8 +371,8 @@ if __name__ == 'main':
             f.write(version_check.content)
             f.close
     if updateimageinjest:
-        print("updating Loader Please wait")
-        version_check = requests.get(versionurl, verify=False)
+        print("updating Image Injester Please wait")
+        version_check = requests.get("https://github.com/Girthquake/CardBuilder/raw/master/comp/ImageInjest.exe", verify=False)
         with open('ImageInjest.exe', 'wb') as f:
             f.write(version_check.content)
             f.close
