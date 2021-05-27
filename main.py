@@ -23,7 +23,22 @@ import shutil
 import os, sys
 import pickle
 import binascii
-
+import os.path
+from concurrent.futures import as_completed, ThreadPoolExecutor
+import signal
+from functools import partial
+from threading import Event
+from typing import Iterable
+from urllib.request import urlopen
+from rich.progress import (
+    BarColumn,
+    DownloadColumn,
+    Progress,
+    TaskID,
+    TextColumn,
+    TimeRemainingColumn,
+    TransferSpeedColumn,
+)
 
 #Variables
 prnumber = 0
@@ -356,7 +371,7 @@ if __name__ == 'main':
             f.close
         
     isgood = False
-    console = Console(width=266)
+    console = Console()
     try:
         el1 = Elockouts()
         el2 = Elockouts()

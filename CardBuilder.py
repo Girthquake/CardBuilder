@@ -26,7 +26,23 @@ from decimal import *
 import os, sys
 import urllib.request as ur
 requests.packages.urllib3.disable_warnings() 
-import ssl 
+import ssl
+import os.path
+from concurrent.futures import as_completed, ThreadPoolExecutor
+import signal
+from functools import partial
+from threading import Event
+from typing import Iterable
+from urllib.request import urlopen
+from rich.progress import (
+    BarColumn,
+    DownloadColumn,
+    Progress,
+    TaskID,
+    TextColumn,
+    TimeRemainingColumn,
+    TransferSpeedColumn,
+)
 updateurl = "https://raw.githubusercontent.com/Girthquake/CardBuilder/master/main.py"
 versionurl = "https://raw.githubusercontent.com/Girthquake/CardBuilder/master/Updater/version"
 version=0
