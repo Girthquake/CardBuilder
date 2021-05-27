@@ -24,7 +24,6 @@ import os, sys
 import pickle
 import binascii
 
-
 prnumber = 0
 panelroom = 0
 equipnumber = 0

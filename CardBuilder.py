@@ -31,7 +31,7 @@ updateurl = "https://github.com/Girthquake/Card_Builder/raw/main/cardbuilder"
 versionurl = "https://raw.githubusercontent.com/Girthquake/CardBuilder/master/Updater/version"
 version=0
 updateversion=0
-if __name__ == 'loader':
+if __name__ == '__main__':
     try:
         _create_unverified_https_context = ssl._create_unverified_context 
     except AttributeError: 
