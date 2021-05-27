@@ -24,23 +24,20 @@ import os, sys
 import pickle
 import binascii
 
+#Variables
 prnumber = 0
 panelroom = 0
 equipnumber = 0
 elv = 0
 el = 0
 imglist = []
-
 tempsave=[]
 timage=[]
-#lists
 prlist = []
 vlist = []
 olist = []
 prolist = []
 crashsave=[]
-
-#save last card info
 sdtype=0
 rlsave=0
 olsave=0
@@ -52,16 +49,8 @@ equipname="test"
 equipnumber="000-000000"
 hz=0
 hz1=0
-
-Iname1=""
-Iname2=""
-Iname3=""
-Iname4=""
-Iname5=""
-Iname6=""
-
 updateloader=False
-
+#Classes
 class eStops:
     def __init__(self):
         self.location = ""
@@ -202,7 +191,7 @@ class Elockouts:
             else:
                 console.print("Use Only Numbers 1-4.", style="red",justify="center")
                 self.prrtry = True
-
+#Functions
 def select_PR(prnumber,prnsave):
     pr = 0
     prnumber = 0
