@@ -410,12 +410,9 @@ if __name__ == 'main':
         if check_exists(imagepath):
             console.print("Directory /Photos/ found!",style="green",justify="center")
         else:
-            print("Directory /Photos/ being created.")
             console.print("Directory /Photos/ being created.",style="bright_white",justify="center")
             os.mkdir(imagepath)
-            if check_exists(imagepath):
-                print("Directory /Photos/ being created.")
-            else:
+            if not check_exists(imagepath):
                 console.print("ERROR CANNOT CREATE DIRECTORY /Photos/ Check permissions and try again",style="red",justify="center")
         console.print("Loading resources...",style="yellow",justify="center")
         #load resources text and add to lists

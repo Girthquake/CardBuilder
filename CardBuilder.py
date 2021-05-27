@@ -28,7 +28,6 @@ import urllib.request as ur
 requests.packages.urllib3.disable_warnings() 
 import ssl 
 updateurl = "https://raw.githubusercontent.com/Girthquake/CardBuilder/master/main.py"
-newupdateurl = "https://raw.githubusercontent.com/Girthquake/CardBuilder/master/builder.py"
 versionurl = "https://raw.githubusercontent.com/Girthquake/CardBuilder/master/Updater/version"
 version=0
 updateversion=0
@@ -50,57 +49,15 @@ if __name__ == '__main__':
         f.close
     with open('vers', 'r') as f:
         new_version=f.readlines()
-        updateurl=new_version[1]#.strip('\n')
-        updatedversion=new_version[0]#.strip('\n')
-        newupdateurl=new_version[2]#.strip('\n')
-        style=new_version[3].strip('\n')
+        updateurl=new_version[1].strip('\n')
+        updatedversion=new_version[0].strip('\n')
         f.close()
         os.remove('vers')
-    print(new_version)
     if Decimal(updatedversion) <= Decimal(version):
-        if style == 'old':
-            if os.path.isfile('main.py'):
-                import importlib
-                import importlib.util
-                spec = importlib.util.spec_from_file_location('main', 'main.py')
-                module = importlib.util.module_from_spec(spec)
-                spec.loader.exec_module(module)
-            else:
-                print('Importing system main')
-                import main
-        if style == 'new':
-            if os.path.isfile('builder.py'):
-                import importlib
-                import importlib.util
-                spec = importlib.util.spec_from_file_location('builder', 'builder.py')
-                module = importlib.util.module_from_spec(spec)
-                spec.loader.exec_module(module)
-            else:
-                print('Importing system main')
-                import builder
+        import main
     else:
         ur.urlretrieve(updateurl, "main.py")
-        ur.urlretrieve(newupdateurl, "builder.py")
         version = updatedversion
         with open('version', 'wb') as fp:
             pickle.dump(version, fp)
-        if style == 'old':
-            if os.path.isfile('main.py'):
-                import importlib
-                import importlib.util
-                spec = importlib.util.spec_from_file_location('main', 'main.py')
-                module = importlib.util.module_from_spec(spec)
-                spec.loader.exec_module(module)
-            else:
-                print('Importing system main')
-                import main
-        if style == 'new':
-            if os.path.isfile('builder.py'):
-                import importlib
-                import importlib.util
-                spec = importlib.util.spec_from_file_location('builder', 'builder.py')
-                module = importlib.util.module_from_spec(spec)
-                spec.loader.exec_module(module)
-            else:
-                print('Importing system main')
-                import builder
+        import main
