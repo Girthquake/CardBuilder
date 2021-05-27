@@ -32,6 +32,7 @@ newupdateurl = "https://raw.githubusercontent.com/Girthquake/CardBuilder/master/
 versionurl = "https://raw.githubusercontent.com/Girthquake/CardBuilder/master/Updater/version"
 version=0
 updateversion=0
+style="old"
 if __name__ == '__main__':
     try:
         _create_unverified_https_context = ssl._create_unverified_context 
@@ -49,12 +50,13 @@ if __name__ == '__main__':
         f.close
     with open('vers', 'r') as f:
         new_version=f.readlines()
-        updateurl=new_version[1]
-        updatedversion=new_version[0]
-        newupdateurl=new_version[2]
-        style=new_version[3]
+        updateurl=new_version[1]#.strip('\n')
+        updatedversion=new_version[0]#.strip('\n')
+        newupdateurl=new_version[2]#.strip('\n')
+        style=new_version[3].strip('\n')
         f.close()
         os.remove('vers')
+    print(new_version)
     if Decimal(updatedversion) <= Decimal(version):
         if style == 'old':
             if os.path.isfile('main.py'):
@@ -70,7 +72,7 @@ if __name__ == '__main__':
             if os.path.isfile('builder.py'):
                 import importlib
                 import importlib.util
-                spec = importlib.util.spec_from_file_location('main', 'builder.py')
+                spec = importlib.util.spec_from_file_location('builder', 'builder.py')
                 module = importlib.util.module_from_spec(spec)
                 spec.loader.exec_module(module)
             else:
@@ -96,7 +98,7 @@ if __name__ == '__main__':
             if os.path.isfile('builder.py'):
                 import importlib
                 import importlib.util
-                spec = importlib.util.spec_from_file_location('main', 'builder.py')
+                spec = importlib.util.spec_from_file_location('builder', 'builder.py')
                 module = importlib.util.module_from_spec(spec)
                 spec.loader.exec_module(module)
             else:
