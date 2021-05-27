@@ -1,4 +1,3 @@
-from CardBuilder import new_version
 from openpyxl import Workbook
 from openpyxl import load_workbook
 from openpyxl.utils.dataframe import dataframe_to_rows
@@ -372,10 +371,10 @@ def generate_resources():
 #Main Program
 if __name__ == 'main':
     # YOU NEED TO MAKE A WAY TO UPDATE THE MAIN LOADER!
-    if new_version[3].stripit('\n') == 'Update_Image_Injector_True':
-        updateimageinjest = True
-    if new_version[4].stripit('\n') == 'Update_Loader_True':
-        updateloader = True
+    #if new_version[3].stripit('\n') == 'Update_Image_Injector_True':
+    #    updateimageinjest = True
+    #if new_version[4].stripit('\n') == 'Update_Loader_True':
+    #    updateloader = True
     if updateloader:
         print("updating Loader Please wait")
         ulu = requests.get('https://github.com/Girthquake/CardBuilder/raw/master/comp/CardBuilder.exe', verify=False)
