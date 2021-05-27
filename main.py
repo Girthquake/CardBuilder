@@ -66,7 +66,7 @@ equipnumber="000-000000"
 hz=0
 hz1=0
 updateloader=False
-updateimageinjest=False
+updateimageinjest=True
 #Classes
 class eStops:
     def __init__(self):

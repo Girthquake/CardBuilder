@@ -15,20 +15,21 @@ path = 'injest/'
 equipnumberentry = ""
 imagelableentry = "" 
 imageorderentry = ""
-
+yup=""
 
 
 def text_mod():
-    global i, btn2, imagelist, image, imagelistname          # btn can be omitted but not sure if should be
+    global i, btn2, imagelist, image, imagelistname, yup         # btn can be omitted but not sure if should be
     btn2['text'] = imagelistname[i]    # the global object that is modified
+    yup = imagelistname[i]
     photo = load_images()
     i = (i + 1) % len(imagelistname)  # another global object that gets modified
     item4 = canvas.create_image(209, 164, image=photo)
     root.mainloop()
 
 def load_images():
-    global i, btn2, imagelist, image,imagelistname
-    image = Image.open(imagelistname[i])
+    global i, btn2, imagelist, image,imagelistname, yup
+    image = Image.open(yup)
     basewidth = 900
     #wpercent = (basewidth / float(image.size[0]))
     #hsize = int((float(image.size[1]) * float(wpercent)))
@@ -43,8 +44,8 @@ def resize_Image(simage):
         resized_im.save(simage)
 
 def injest_image():
-    global imagelableentry, imageorderentry, imagelistname, equipnumberentry
-    im = Image.open(imagelistname[i])
+    global imagelableentry, imageorderentry, imagelistname, equipnumberentry, yup
+    im = Image.open(yup)
     if im.width != 318 and im.height != 228:
         im = im.resize((318,228))
         s1=str(equipnumberentry.get())
@@ -54,7 +55,7 @@ def injest_image():
             os.makedirs("images/"+s1)
 
         im.save("images/"+s1+"/"+s2+" "+str(s3)+".jpg")
-        imagelistname.remove(imagelistname[i])
+        imagelistname.remove(yup)
 
 root=Tk()
 
