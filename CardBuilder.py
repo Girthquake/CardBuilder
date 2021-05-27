@@ -27,11 +27,12 @@ import os, sys
 import urllib.request as ur
 requests.packages.urllib3.disable_warnings() 
 import ssl 
-updateurl = "https://github.com/Girthquake/Card_Builder/raw/main/cardbuilder"
+updateurl = "https://raw.githubusercontent.com/Girthquake/CardBuilder/master/main.py"
+newupdateurl = "https://raw.githubusercontent.com/Girthquake/CardBuilder/master/builder.py"
 versionurl = "https://raw.githubusercontent.com/Girthquake/CardBuilder/master/Updater/version"
 version=0
 updateversion=0
-if __name__ == 'loader':
+if __name__ == '__main__':
     try:
         _create_unverified_https_context = ssl._create_unverified_context 
     except AttributeError: 
@@ -50,28 +51,54 @@ if __name__ == 'loader':
         new_version=f.readlines()
         updateurl=new_version[1]
         updatedversion=new_version[0]
+        newupdateurl=new_version[2]
+        style=new_version[3]
         f.close()
         os.remove('vers')
     if Decimal(updatedversion) <= Decimal(version):
-        if os.path.isfile('main.py'):
-            import importlib
-            import importlib.util
-            spec = importlib.util.spec_from_file_location('main', 'main.py')
-            module = importlib.util.module_from_spec(spec)
-            spec.loader.exec_module(module)
-        else:
-            print('Importing system main')
-            import main
+        if style == 'old':
+            if os.path.isfile('main.py'):
+                import importlib
+                import importlib.util
+                spec = importlib.util.spec_from_file_location('main', 'main.py')
+                module = importlib.util.module_from_spec(spec)
+                spec.loader.exec_module(module)
+            else:
+                print('Importing system main')
+                import main
+        if style == 'new':
+            if os.path.isfile('builder.py'):
+                import importlib
+                import importlib.util
+                spec = importlib.util.spec_from_file_location('main', 'builder.py')
+                module = importlib.util.module_from_spec(spec)
+                spec.loader.exec_module(module)
+            else:
+                print('Importing system main')
+                import builder
     else:
         ur.urlretrieve(updateurl, "main.py")
+        ur.urlretrieve(newupdateurl, "builder.py")
         version = updatedversion
         with open('version', 'wb') as fp:
             pickle.dump(version, fp)
-        if os.path.isfile('main.py'):
-            import importlib
-            import importlib.util
-            spec = importlib.util.spec_from_file_location('main', 'main.py')
-            module = importlib.util.module_from_spec(spec)
-            spec.loader.exec_module(module)
-        else:
-            import main
+        if style == 'old':
+            if os.path.isfile('main.py'):
+                import importlib
+                import importlib.util
+                spec = importlib.util.spec_from_file_location('main', 'main.py')
+                module = importlib.util.module_from_spec(spec)
+                spec.loader.exec_module(module)
+            else:
+                print('Importing system main')
+                import main
+        if style == 'new':
+            if os.path.isfile('builder.py'):
+                import importlib
+                import importlib.util
+                spec = importlib.util.spec_from_file_location('main', 'builder.py')
+                module = importlib.util.module_from_spec(spec)
+                spec.loader.exec_module(module)
+            else:
+                print('Importing system main')
+                import builder
