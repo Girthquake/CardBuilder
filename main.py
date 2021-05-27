@@ -1083,8 +1083,11 @@ if __name__ == 'main':
         crashsave.append(p13)
         crashsave.append(hz1)
         with open('crash.bak', 'wb') as fp:
+
             pickle.dump(crashsave, fp)
         with open('bak/equip/'+equipnumber+'.bak', 'wb') as fp:
+            if not os.path.exists('bak/equip/'):
+                os.makedirs('bak/equip/')
             pickle.dump(crashsave, fp)
 
     #card demo table
