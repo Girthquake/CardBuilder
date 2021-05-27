@@ -70,10 +70,28 @@ if __name__ == '__main__':
         f.close()
         os.remove('vers')
     if Decimal(updatedversion) <= Decimal(version):
-        import main
+        if os.path.isfile('main.py'):
+            #print('Importing local main')
+            import importlib
+            import importlib.util
+            spec = importlib.util.spec_from_file_location('main', 'main.py')
+            module = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(module)
+        else:
+            print('Importing system main')
+            import main
     else:
         ur.urlretrieve(updateurl, "main.py")
         version = updatedversion
         with open('version', 'wb') as fp:
             pickle.dump(version, fp)
-        import main
+        if os.path.isfile('main.py'):
+            #print('Importing local main')
+            import importlib
+            import importlib.util
+            spec = importlib.util.spec_from_file_location('main', 'main.py')
+            module = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(module)
+        else:
+            print('Importing system main')
+            import main
