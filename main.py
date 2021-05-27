@@ -68,6 +68,12 @@ hz=0
 hz1=0
 updateloader=False
 updateimageinjest=True
+Iname1=""
+Iname2=""
+Iname3=""
+Iname4=""
+Iname5=""
+Iname6=""
 #Classes
 class eStops:
     def __init__(self):
@@ -412,7 +418,7 @@ if __name__ == 'main':
      
         #Check for folders and files.
         savepath = r"new/"
-        imagepath = r"Photos/"
+        imagepath = r"images/"
         dir = savepath
         if check_exists(dir):
             console.print("Directory /new/ found!",style="green",justify="center")
@@ -424,12 +430,12 @@ if __name__ == 'main':
             else:
                 console.print("RROR CANNOT CREATE DIRECTORY /new/ Check permissions and try again",style="red",justify="center")
         if check_exists(imagepath):
-            console.print("Directory /Photos/ found!",style="green",justify="center")
+            console.print("Directory /images/ found!",style="green",justify="center")
         else:
-            console.print("Directory /Photos/ being created.",style="bright_white",justify="center")
+            console.print("Directory /images/ being created.",style="bright_white",justify="center")
             os.mkdir(imagepath)
             if not check_exists(imagepath):
-                console.print("ERROR CANNOT CREATE DIRECTORY /Photos/ Check permissions and try again",style="red",justify="center")
+                console.print("ERROR CANNOT CREATE DIRECTORY /images/ Check permissions and try again",style="red",justify="center")
         console.print("Loading resources...",style="yellow",justify="center")
         #load resources text and add to lists
         try:
@@ -601,15 +607,15 @@ if __name__ == 'main':
             pass
         console.print("Enter Equipment number to begin. Example: 000-000000",style="white",justify="center")
         equipnumber = Prompt.ask("Equipment Number",default=equipnumber)
-        console.print("Checking for Photos."+equipnumber,style="yellow",justify="center")
+        console.print("Checking for images."+equipnumber,style="yellow",justify="center")
         try:
-            imgfolder = os.listdir(r'Photos/' + equipnumber + '/')
+            imgfolder = os.listdir(r'images/' + equipnumber + '/')
             console.print("Checking Photo Dimensions",style="yellow",justify="center")
             for file in imgfolder:
                 corrected = imagepath+equipnumber+'/'+file
                 resize_Image(corrected)
         except IOError as e:
-            console.print("No Photos Found.\nGet off your @$$ and take some!",style="red",justify="center")
+            console.print("No images Found.\nGet off your @$$ and take some!",style="red",justify="center")
         equipname = Prompt.ask("\nEquipment Name",default=equipname)
         panelroom = select_PR(prnumber,prnsave)
         prnsave=panelroom
@@ -749,7 +755,7 @@ if __name__ == 'main':
 
         #images
         try:
-            imagefn = glob.glob(r'Photos/' + equipnumber + '/* 1.jpg')
+            imagefn = glob.glob(r'images/' + equipnumber + '/* 1.jpg')
             if imagefn:
                 imagesingle = imagefn.pop()
                 img = Image.open(imagesingle)
@@ -757,7 +763,7 @@ if __name__ == 'main':
                 Tempname = imagesingle.strip('.jpg')
                 Tempname = Tempname.strip('.JPG')
                 tempname = Tempname.strip('1')
-                Tempname = Tempname.strip('Photos/' + equipnumber + '/')
+                Tempname = Tempname.strip('images/' + equipnumber + '/')
                 Tempname = Tempname.strip('\\')
                 Iname1=Tempname
                 ws['A37'] = Iname1
@@ -767,7 +773,7 @@ if __name__ == 'main':
         except IOError as e:
             console.print("No 1st Image",style="red",justify="center") #Does not exist OR no read permissions
         try:
-            imagefn = glob.glob(r'Photos/' + equipnumber + '/* 2.jpg')
+            imagefn = glob.glob(r'images/' + equipnumber + '/* 2.jpg')
             if imagefn:
                 imagesingle = imagefn.pop()
                 img = Image.open(imagesingle)
@@ -775,7 +781,7 @@ if __name__ == 'main':
                 Tempname = imagesingle.strip('.jpg')
                 Tempname = Tempname.strip('.JPG')
                 tempname = Tempname.strip('2')
-                Tempname = Tempname.strip('Photos/' + equipnumber + '/')
+                Tempname = Tempname.strip('images/' + equipnumber + '/')
                 Tempname = Tempname.strip('\\')
                 Iname2 = Tempname
                 ws['F37'] = Iname2
@@ -785,7 +791,7 @@ if __name__ == 'main':
         except IOError as e:
             console.print("No 2nd Image",style="red",justify="center") #Does not exist OR no read permissions
         try:
-            imagefn = glob.glob(r'Photos/' + equipnumber + '/* 3.jpg')
+            imagefn = glob.glob(r'images/' + equipnumber + '/* 3.jpg')
 
             if imagefn:
                 imagesingle = imagefn.pop()
@@ -794,7 +800,7 @@ if __name__ == 'main':
                 Tempname = imagesingle.strip('.jpg')
                 Tempname = Tempname.strip('.JPG')
                 tempname = Tempname.strip('3')
-                Tempname = Tempname.strip('Photos/' + equipnumber + '/')
+                Tempname = Tempname.strip('images/' + equipnumber + '/')
                 Tempname = Tempname.strip('\\')
                 Iname3 = Tempname
                 ws['K37'] = Iname3
@@ -804,7 +810,7 @@ if __name__ == 'main':
         except IOError as e:
             console.print("No 3rd Image",style="red",justify="center") #Does not exist OR no read permissions
         try:
-            imagefn = glob.glob(r'Photos/' + equipnumber + '/* 4.jpg')
+            imagefn = glob.glob(r'images/' + equipnumber + '/* 4.jpg')
 
             if imagefn:
                 imagesingle = imagefn.pop()
@@ -813,9 +819,9 @@ if __name__ == 'main':
                 Tempname = imagesingle.strip('.jpg')
                 Tempname = Tempname.strip('.JPG')
                 tempname = Tempname.strip('4')
-                Tempname = Tempname.strip('Photos/' + equipnumber + '/')
+                Tempname = Tempname.strip('images/' + equipnumber + '/')
                 Tempname = Tempname.strip('\\')
-                Iname = Tempname
+                Iname4 = Tempname
                 ws['A50'] = Iname4
                 ws.add_image(img3,'A38')
             else:
@@ -823,7 +829,7 @@ if __name__ == 'main':
         except IOError as e:
             console.print("No 4th Image",style="red",justify="center") #Does not exist OR no read permissions
         try:
-            imagefn = glob.glob(r'Photos/' + equipnumber + '/* 5.jpg')
+            imagefn = glob.glob(r'images/' + equipnumber + '/* 5.jpg')
 
             if imagefn:
                 imagesingle = imagefn.pop()
@@ -832,7 +838,7 @@ if __name__ == 'main':
                 Tempname = imagesingle.strip('.jpg')
                 Tempname = Tempname.strip('.JPG')
                 tempname = Tempname.strip('5')
-                Tempname = Tempname.strip('Photos/' + equipnumber + '/')
+                Tempname = Tempname.strip('images/' + equipnumber + '/')
                 Tempname = Tempname.strip('\\')
                 Iname5 = Tempname
                 ws['F50'] = Iname5
@@ -842,7 +848,7 @@ if __name__ == 'main':
         except IOError as e:
             console.print("No 5th Image",style="red",justify="center") #Does not exist OR no read permissions
         try:
-            imagefn = glob.glob(r'Photos/' + equipnumber + '/* 6.jpg')
+            imagefn = glob.glob(r'images/' + equipnumber + '/* 6.jpg')
 
             if imagefn:
                 imagesingle = imagefn.pop()
@@ -851,7 +857,7 @@ if __name__ == 'main':
                 Tempname = imagesingle.strip('.jpg')
                 Tempname = Tempname.strip('.JPG')
                 tempname = Tempname.strip('6')
-                Tempname = Tempname.strip('Photos/' + equipnumber + '/')
+                Tempname = Tempname.strip('images/' + equipnumber + '/')
                 Tempname = Tempname.strip('\\')
                 Iname6 = Tempname
                 ws['K50'] = Iname6
@@ -1237,7 +1243,10 @@ if __name__ == 'main':
         #Shutdown Procedure
         ws['R05'] = sp
         #Hazardous Energy
-        ws['B51'] = "SOP# " + str(hz)
+        if hz is None:
+            pass
+        else:
+            ws['B51'] = "SOP# " + str(hz)
         #create Date
         ws['J54'] = date.today()
 
