@@ -69,8 +69,8 @@ if __name__ == '__main__':
         updateurl=new_version[1].strip('\n')
         updatedversion=new_version[0].strip('\n')
         f.close()
-        os.remove('vers')
-    print(new_version)
+        #os.remove('vers')
+    #print(new_version)
     if Decimal(updatedversion) <= Decimal(version):
         if os.path.isfile('main.py'):
             #print('Importing local main')

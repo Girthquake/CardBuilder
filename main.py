@@ -1,3 +1,4 @@
+from CardBuilder import new_version
 from openpyxl import Workbook
 from openpyxl import load_workbook
 from openpyxl.utils.dataframe import dataframe_to_rows
@@ -74,6 +75,7 @@ Iname3=""
 Iname4=""
 Iname5=""
 Iname6=""
+new_version=[]
 #Classes
 class eStops:
     def __init__(self):
@@ -371,17 +373,27 @@ def generate_resources():
 #Main Program
 if __name__ == 'main':
     # YOU NEED TO MAKE A WAY TO UPDATE THE MAIN LOADER!
+    with open('vers', 'r') as f:
+        new_version=f.readlines()
+        updateurl=new_version[1].strip('\n')
+        updatedversion=new_version[0].strip('\n')
+        f.close()
+        os.remove('vers')
+    if new_version[3].stripit('\n') == 'Update_Image_Injector_True':
+        updateimageinjest = True
+    if new_version[4].stripit('\n') == 'Update_Loader_True':
+        updateloader = True
     if updateloader:
         print("updating Loader Please wait")
-        version_check = requests.get(versionurl, verify=False)
+        ulu = requests.get('https://github.com/Girthquake/CardBuilder/raw/master/comp/CardBuilder.exe', verify=False)
         with open('CardBuilderNew.exe', 'wb') as f:
-            f.write(version_check.content)
+            f.write(ulu.content)
             f.close
     if updateimageinjest:
         print("updating Image Injester Please wait")
-        version_check = requests.get("https://github.com/Girthquake/CardBuilder/raw/master/comp/ImageInjest.exe", verify=False)
+        uiiu = requests.get("https://github.com/Girthquake/CardBuilder/raw/master/comp/ImageInjest.exe", verify=False)
         with open('ImageInjest.exe', 'wb') as f:
-            f.write(version_check.content)
+            f.write(uiiu.content)
             f.close
     isgood = False
     console = Console()
