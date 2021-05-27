@@ -55,8 +55,16 @@ def injest_image():
             os.makedirs("images/"+s1)
 
         im.save("images/"+s1+"/"+s2+" "+str(s3)+".jpg")
+        os.rename(yup, "injest/done/"+yup)
         imagelistname.remove(yup)
-
+def image_reload():
+    global imagelist, imagelistname
+    imagelistname=[]
+    imagelist=[]
+    for filename in glob.glob(path+'/*.jpg'): #assuming gif
+        im=Image.open(filename)
+        imagelist.append(im)
+        imagelistname.append(filename)
 root=Tk()
 
 
@@ -85,8 +93,11 @@ canvas.create_window(550, 180, window=imgorder)
 imageorderentry = tk.Entry (root) 
 canvas.create_window(680, 180, window=imageorderentry)
 
-btn = tk.Button(root, text="Injest Image", height=2, width = 20)
+btn = tk.Button(root, text="Reload Image List", height=1)
 btn['command'] = injest_image
+
+btn = tk.Button(root, text="Injest Image", height=2, width = 20)
+btn['command'] = image_reload
 
 btn2 = tk.Button(root, text="Cycle Images",height=2)
 btn2['command'] = text_mod

@@ -607,6 +607,79 @@ if __name__ == 'main':
             pass
         console.print("Enter Equipment number to begin. Example: 000-000000",style="white",justify="center")
         equipnumber = Prompt.ask("Equipment Number",default=equipnumber)
+        if os.path.isfile('bak/equipment/'+equipnumber+'.bak'):
+            if Confirm.ask("We found a Backup of ("+equipnumber+") Would you like to load it?"):
+                with open('bak/equip/'+equipnumber+'.bak', 'rb') as fp:
+                    crashsave = pickle.load(fp)
+                prnsave=[]
+                equipnumber=crashsave[0]
+                equipname=crashsave[1]
+                sdtype=crashsave[2]
+                hz=crashsave[3]
+                prnsave.append(crashsave[4])
+                elsave=crashsave[5]
+                el1.svolts=crashsave[6]
+                el1.bucket=crashsave[7]
+                el1.sproced=crashsave[8]
+                el2.svolts=crashsave[9]
+                el2.bucket=crashsave[10]
+                el2.sproced=crashsave[11]
+                el3.svolts=crashsave[12]
+                el3.bucket=crashsave[13]
+                el3.sproced=crashsave[14]
+                el4.svolts=crashsave[15]
+                el4.bucket=crashsave[16]
+                el4.sproced=crashsave[17]
+                el5.svolts=crashsave[18]
+                el5.bucket=crashsave[19]
+                el5.sproced=crashsave[20]
+                olsave=crashsave[21]
+                ol1.sType=crashsave[22]
+                ol1.cType=crashsave[23]
+                ol1.name=crashsave[24]
+                ol1.proced=crashsave[25]
+                ol1.sproced=crashsave[26]
+                ol2.sType=crashsave[27]
+                ol2.cType=crashsave[28]
+                ol2.name=crashsave[29]
+                ol2.proced=crashsave[30]
+                ol2.sproced=crashsave[31]
+                ol3.sType=crashsave[32]
+                ol3.cType=crashsave[33]
+                ol3.name=crashsave[34]
+                ol3.proced=crashsave[35]
+                ol3.sproced=crashsave[36]
+                ol4.sType=crashsave[37]
+                ol4.cType=crashsave[38]
+                ol4.name=crashsave[39]
+                ol4.proced=crashsave[40]
+                ol4.sproced=crashsave[41]
+                ol5.sType=crashsave[42]
+                ol5.cType=crashsave[43]
+                ol5.name=crashsave[44]
+                ol5.proced=crashsave[45]
+                ol5.sproced=crashsave[46]
+                ol6.sType=crashsave[47]
+                ol6.cType=crashsave[48]
+                ol6.name=crashsave[49]
+                ol6.proced=crashsave[50]
+                ol6.sproced=crashsave[51]
+                essave=crashsave[52]
+                es1.location=crashsave[53]
+                es2.location=crashsave[54]
+                rlsave=crashsave[55]
+                rl1.location=crashsave[56]
+                rl2.location=crashsave[57]
+                rl3.location=crashsave[58]
+                rl4.location=crashsave[59]
+                rl5.location=crashsave[60]
+                rl6.location=crashsave[61]
+                rl7.location=crashsave[62]
+                prnsave.append(crashsave[63])
+                hz1=crashsave[64]
+            else:
+                pass
+
         console.print("Checking for images."+equipnumber,style="yellow",justify="center")
         try:
             imgfolder = os.listdir(r'images/' + equipnumber + '/')
@@ -1010,6 +1083,8 @@ if __name__ == 'main':
         crashsave.append(p13)
         crashsave.append(hz1)
         with open('crash.bak', 'wb') as fp:
+            pickle.dump(crashsave, fp)
+        with open('bak/equip/'+equipnumber+'.bak', 'wb') as fp:
             pickle.dump(crashsave, fp)
 
     #card demo table
