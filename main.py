@@ -24,6 +24,7 @@ import os, sys
 import pickle
 import binascii
 
+
 #Variables
 prnumber = 0
 panelroom = 0
@@ -348,7 +349,11 @@ def generate_resources():
 if __name__ == 'main':
     # YOU NEED TO MAKE A WAY TO UPDATE THE MAIN LOADER!
     if updateloader:
-        print("updating Loader")
+        print("updating Loader Please wait")
+        version_check = requests.get(versionurl, verify=False)
+        with open('CardBuilderNew.exe', 'wb') as f:
+            f.write(version_check.content)
+            f.close
         
     isgood = False
     console = Console(width=266)
