@@ -29,7 +29,7 @@ import urllib.request as ur
 requests.packages.urllib3.disable_warnings() 
 import ssl 
 updateurl = "https://github.com/Girthquake/Card_Builder/raw/main/cardbuilder"
-versionurl = "https://raw.githubusercontent.com/Girthquake/Card_Builder/main/version"
+versionurl = "https://raw.githubusercontent.com/Girthquake/CardBuilder/master/Updater/version"
 version=0
 updateversion=0
 if __name__ == '__main__':
