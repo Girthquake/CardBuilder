@@ -607,7 +607,7 @@ if __name__ == 'main':
             pass
         console.print("Enter Equipment number to begin. Example: 000-000000",style="white",justify="center")
         equipnumber = Prompt.ask("Equipment Number",default=equipnumber)
-        if os.path.isfile('bak/equipment/'+equipnumber+'.bak'):
+        if os.path.isfile('bak/equip/'+equipnumber+'.bak'):
             if Confirm.ask("We found a Backup of ("+equipnumber+") Would you like to load it?"):
                 with open('bak/equip/'+equipnumber+'.bak', 'rb') as fp:
                     crashsave = pickle.load(fp)
