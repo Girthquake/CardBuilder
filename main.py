@@ -379,6 +379,7 @@ if __name__ == 'main':
         updatedversion=new_version[0].strip('\n')
         f.close()
         os.remove('vers')
+    print(new_version)
     if new_version[3].stripit('\n') == 'Update_Image_Injector_True':
         updateimageinjest = True
     if new_version[4].stripit('\n') == 'Update_Loader_True':
