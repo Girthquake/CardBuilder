@@ -1,4 +1,3 @@
-from CardBuilder import new_version
 from openpyxl import Workbook
 from openpyxl import load_workbook
 from openpyxl.utils.dataframe import dataframe_to_rows
@@ -375,8 +374,6 @@ if __name__ == 'main':
     # YOU NEED TO MAKE A WAY TO UPDATE THE MAIN LOADER!
     with open('vers', 'r') as f:
         new_version=f.readlines()
-        updateurl=new_version[1].strip('\n')
-        updatedversion=new_version[0].strip('\n')
         f.close()
         os.remove('vers')
     print(new_version)
