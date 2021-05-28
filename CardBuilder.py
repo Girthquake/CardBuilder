@@ -60,7 +60,7 @@ if __name__ == '__main__':
             version = pickle.load(fp)
             fp.close()
     version_check = requests.get(versionurl, verify=False)
-    print(version)
+    #print(version)
     with open('vers', 'wb') as f:
         f.write(version_check.content)
         f.close
