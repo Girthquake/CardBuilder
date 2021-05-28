@@ -1,5 +1,5 @@
-1.69
+1.701
 https://raw.githubusercontent.com/Girthquake/CardBuilder/master/main.py
 https://raw.githubusercontent.com/Girthquake/CardBuilder/master/Updater/version
-Update_Image_Injector_True
-Update_Loader_False
+Update_Image_Injector_False
+Update_Loader_True
