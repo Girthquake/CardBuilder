@@ -389,7 +389,7 @@ if __name__ == 'main':
             f.close
     if updateimageinjest:
         print("updating Image Injester Please wait")
-        uiiu = requests.get("https://github.com/Girthquake/CardBuilder/raw/master/comp/ImageInjest.exe", verify=False)
+        uiiu = requests.get("https://github.com/Girthquake/CardBuilder/raw/master/comp/imageinjest.exe", verify=False)
         with open('ImageInjest.exe', 'wb') as f:
             f.write(uiiu.content)
             f.close
