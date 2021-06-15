@@ -389,12 +389,18 @@ if __name__ == 'main':
             f.close
     if updateimageinjest:
         print("updating Image Injester Please wait")
-        uiiu = requests.get("https://github.com/Girthquake/CardBuilder/raw/master/comp/ImageInjest.exe", verify=False)
-        with open('ImageInjest.exe', 'wb') as f:
+        uiiu = requests.get("https://raw.githubusercontent.com/Girthquake/CardBuilder/master/ImageInjest.py", verify=False)
+        with open('ImageInjest.py', 'wb') as f:
             f.write(uiiu.content)
             f.close
     isgood = False
     console = Console()
+    if Confirm.ask("Would you like to Injest Images?"):
+        import importlib
+        import importlib.util
+        spec = importlib.util.spec_from_file_location('ImageInjest', 'ImageInjest.py')
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
     try:
         el1 = Elockouts()
         el2 = Elockouts()
