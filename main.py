@@ -372,6 +372,11 @@ def generate_resources():
 #Main Program
 if __name__ == 'main':
     # YOU NEED TO MAKE A WAY TO UPDATE THE MAIN LOADER!
+    version_check = requests.get("https://raw.githubusercontent.com/Girthquake/CardBuilder/master/Updater/version", verify=False)
+    #print(version)
+    with open('vers', 'wb') as f:
+        f.write(version_check.content)
+        f.close
     with open('vers', 'r') as f:
         new_version=f.readlines()
         f.close()
