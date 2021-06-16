@@ -11,7 +11,7 @@ i = 0
 img=0
 imagelist=[]
 imagelistname=[]
-path = 'injest/'
+path = 'injest/*'
 equipnumberentry = ""
 imagelableentry = "" 
 imageorderentry = ""
@@ -35,6 +35,7 @@ def load_images():
     #hsize = int((float(image.size[1]) * float(wpercent)))
     image = image.resize((418,328), PIL.Image.ANTIALIAS)
     photo = ImageTk.PhotoImage(image)
+    image.close()
     return photo
 
 def resize_Image(simage):
@@ -42,6 +43,7 @@ def resize_Image(simage):
     if im.width != 318 and im.height != 228:
         resized_im = im.resize((318,228))
         resized_im.save(simage)
+    im.close()
 
 def injest_image():
     global imagelableentry, imageorderentry, imagelistname, equipnumberentry, yup
@@ -55,7 +57,8 @@ def injest_image():
             os.makedirs("images/"+s1)
 
         im.save("images/"+s1+"/"+s2+" "+str(s3)+".jpg")
-        os.rename(yup, "injest/done/"+yup)
+        im.close()
+        os.remove(yup)
         imagelistname.remove(yup)
 def image_reload():
     global imagelist, imagelistname
@@ -65,6 +68,7 @@ def image_reload():
         im=Image.open(filename)
         imagelist.append(im)
         imagelistname.append(filename)
+    im.close()
 root=Tk()
 
 
@@ -72,6 +76,7 @@ for filename in glob.glob(path+'/*.jpg'): #assuming gif
     im=Image.open(filename)
     imagelist.append(im)
     imagelistname.append(filename)
+    im.close()
 
 canvas=Canvas(root, height=330, width=1000)
 
@@ -93,11 +98,11 @@ canvas.create_window(550, 180, window=imgorder)
 imageorderentry = tk.Entry (root) 
 canvas.create_window(680, 180, window=imageorderentry)
 
-btn = tk.Button(root, text="Reload Image List", height=1)
-btn['command'] = injest_image
+btn = tk.Button(root, text="Reload Image List", height=2)
+btn['command'] = image_reload
 
 btn = tk.Button(root, text="Injest Image", height=2, width = 20)
-btn['command'] = image_reload
+btn['command'] = injest_image
 
 btn2 = tk.Button(root, text="Cycle Images",height=2)
 btn2['command'] = text_mod

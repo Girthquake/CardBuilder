@@ -111,7 +111,7 @@ if __name__ == 'Updater':
                 import main
     else:
         with open('offline', 'wb') as f:
-            f.write("offline")
+            pickle.dump(version, f)
             f.close
         if os.path.isfile('main.py'):
             #print('Importing local main')
