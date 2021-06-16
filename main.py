@@ -75,6 +75,7 @@ Iname4=""
 Iname5=""
 Iname6=""
 new_version=[]
+online=True
 #Classes
 class eStops:
     def __init__(self):
@@ -371,33 +372,36 @@ def generate_resources():
                 f.write("%s\n" % item)
 #Main Program
 if __name__ == 'main':
+    if os.path.isfile('offline'):
+        online=False
     # YOU NEED TO MAKE A WAY TO UPDATE THE MAIN LOADER!
-    version_check = requests.get("https://raw.githubusercontent.com/Girthquake/CardBuilder/master/Updater/version", verify=False)
-    #print(version)
-    with open('vers', 'wb') as f:
-        f.write(version_check.content)
-        f.close
-    with open('vers', 'r') as f:
-        new_version=f.readlines()
-        f.close()
-        os.remove('vers')
-    #print(new_version)
-    if new_version[3].strip('\n') == 'Update_Image_Injector_True':
-        updateimageinjest = True
-    if new_version[4].strip('\n') == 'Update_Loader_True':
-        updateloader = True
-    if updateloader:
-        print("updating Loader Please wait")
-        ulu = requests.get('https://github.com/Girthquake/CardBuilder/raw/master/comp/CardBuilder.exe', verify=False)
-        with open('CardBuilderNew.exe', 'wb') as f:
-            f.write(ulu.content)
+    if not online:
+        version_check = requests.get("https://raw.githubusercontent.com/Girthquake/CardBuilder/master/Updater/version", verify=False)
+        #print(version)
+        with open('vers', 'wb') as f:
+            f.write(version_check.content)
             f.close
-    if updateimageinjest:
-        print("updating Image Injester Please wait")
-        uiiu = requests.get("https://raw.githubusercontent.com/Girthquake/CardBuilder/master/ImageInjest.py", verify=False)
-        with open('ImageInjest.py', 'wb') as f:
-            f.write(uiiu.content)
-            f.close
+        with open('vers', 'r') as f:
+            new_version=f.readlines()
+            f.close()
+            os.remove('vers')
+        #print(new_version)
+        if new_version[3].strip('\n') == 'Update_Image_Injector_True':
+            updateimageinjest = True
+        if new_version[4].strip('\n') == 'Update_Loader_True':
+            updateloader = True
+        if updateloader:
+            print("updating Loader Please wait")
+            ulu = requests.get('https://github.com/Girthquake/CardBuilder/raw/master/comp/CardBuilder.exe', verify=False)
+            with open('CardBuilderNew.exe', 'wb') as f:
+                f.write(ulu.content)
+                f.close
+        if updateimageinjest:
+            print("updating Image Injester Please wait")
+            uiiu = requests.get("https://raw.githubusercontent.com/Girthquake/CardBuilder/master/ImageInjest.py", verify=False)
+            with open('ImageInjest.py', 'wb') as f:
+                f.write(uiiu.content)
+                f.close
     isgood = False
     console = Console()
     if Confirm.ask("Would you like to Injest Images?"):
